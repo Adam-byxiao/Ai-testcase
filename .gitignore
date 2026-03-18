@@ -1,0 +1,53 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE and Editor Configuration
+.vscode/
+.idea/
+*.iml
+.trae/
+
+# Dependency Directories
+node_modules/
+vendor/
+venv/
+.venv/
+env/
+
+# Python Compiled Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build Output
+dist/
+build/
+target/
+
+# Logs and Runtime Files
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Configuration
+.env
+.env.local
+.env.*.local
+
+# Testing and Coverage
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Temporary Files
+*.tmp
+*.temp
+
+# Databases
+*.db
+*.sqlite3

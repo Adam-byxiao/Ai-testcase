@@ -1,0 +1,3396 @@
+
+You are an expert Product Manager and UX Designer.
+Your task is to analyze the following JSON structure, which represents a Figma design file.
+The JSON contains hierarchical information about Screens (Frames), UI Elements (Text, Buttons), and Components.
+
+### Input Data (Figma Structure):
+[
+  {
+    "id": "31063:12935",
+    "name": "↪ 🚧 🔴 Camera mode (v1.0.0)",
+    "type": "CANVAS",
+    "children": [
+      {
+        "id": "31063:13116",
+        "name": "Standalone",
+        "type": "SECTION",
+        "children": [
+          {
+            "id": "31063:12993",
+            "name": "Standby",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31063:12994",
+                "name": "AI Visual",
+                "type": "FRAME"
+              },
+              {
+                "id": "31063:12997",
+                "name": "Home_Clock",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:12998",
+                    "name": "10:55",
+                    "type": "TEXT",
+                    "content": "10:55"
+                  }
+                ]
+              },
+              {
+                "id": "31063:12999",
+                "name": "AI dot matrix",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:13000",
+                    "name": "_AI / Stand by",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31063:13001",
+                "name": "Tap to start",
+                "type": "INSTANCE",
+                "interaction": {
+                  "trigger": "onClick",
+                  "navigate_to": "30409:36500"
+                },
+                "children": [
+                  {
+                    "id": "I31063:13001;30409:36508",
+                    "name": "Btn_L",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31063:13001;30409:36508;20645:32497",
+                        "name": "Button",
+                        "type": "TEXT",
+                        "content": "Tap to start"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "I31063:13001;30409:36509",
+                    "name": "Frame 2005120987",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "I31063:13001;30409:36510",
+                        "name": "UserSound",
+                        "type": "FRAME"
+                      },
+                      {
+                        "id": "I31063:13001;30409:36512",
+                        "name": "Or say “Hey Vibe” to start",
+                        "type": "TEXT",
+                        "content": "Or say “Hey Vibe” to start"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31063:13002",
+                "name": "Prompt Tips",
+                "type": "INSTANCE",
+                "interaction": {
+                  "trigger": "onClick",
+                  "navigate_to": "29637:30095"
+                },
+                "children": [
+                  {
+                    "id": "I31063:13002;29637:30076",
+                    "name": "Use your voice to check events, join meetings, or get help.",
+                    "type": "TEXT",
+                    "content": "Use your voice to check events, join meetings, or get help. "
+                  },
+                  {
+                    "id": "I31063:13002;29637:30085",
+                    "name": "Say: “Join my next meeting.”",
+                    "type": "TEXT",
+                    "content": "Say: \n“Join my next meeting.”"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31063:13004",
+            "name": "PC connected",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31063:13005",
+                "name": "Background",
+                "type": "FRAME"
+              },
+              {
+                "id": "31063:13008",
+                "name": "Webcam",
+                "type": "INSTANCE",
+                "children": [
+                  {
+                    "id": "I31063:13008;6970:17983",
+                    "name": "Icon",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31063:13009",
+                "name": "Connected to PC",
+                "type": "TEXT",
+                "content": "Connected to PC"
+              },
+              {
+                "id": "31063:13010",
+                "name": "Bot is now a camera for your PC. AI features are still accessible.",
+                "type": "TEXT",
+                "content": "Bot is now a camera for your PC. AI features are still accessible."
+              }
+            ]
+          },
+          {
+            "id": "31453:4950",
+            "name": "Standby",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:4951",
+                "name": "Background",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:4954",
+                "name": "AI Visual",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4957",
+                    "name": "Close",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:4958",
+                        "name": "Close Progress",
+                        "type": "INSTANCE",
+                        "interaction": {
+                          "trigger": "onClick",
+                          "navigate_to": "27372:31985"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:4959",
+                "name": "Stroke",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:4960",
+                "name": "Warning Stroke",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:4961",
+                "name": "AI",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4962",
+                    "name": "_AI / Stand by",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4964",
+                "name": "Frame 2005120970",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4965",
+                    "name": "Label",
+                    "type": "TEXT",
+                    "content": "Record"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4966",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4967",
+                    "name": "Join Video Call",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:4967;6709:16890",
+                        "name": "Icon",
+                        "type": "INSTANCE"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:4968",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4969",
+                    "name": "Calendar",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:4969;3823:9020",
+                        "name": "Icon",
+                        "type": "INSTANCE"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:4970",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4971",
+                    "name": "AI Visual",
+                    "type": "FRAME"
+                  },
+                  {
+                    "id": "31453:4974",
+                    "name": "Record",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:4975",
+                        "name": "Icon",
+                        "type": "FRAME"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:4980",
+                "name": "Time",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4981",
+                    "name": "Status",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:4982",
+                        "name": "Mute Mic",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:4982;3823:8769",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:4983",
+                        "name": "WiFi / ON",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:4983;3169:3815",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:4984",
+                        "name": "Battery 4 Bar",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:4984;6675:18580",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:4985",
+                    "name": "10 55",
+                    "type": "TEXT",
+                    "content": "10\n55"
+                  },
+                  {
+                    "id": "31453:4986",
+                    "name": "AM",
+                    "type": "TEXT",
+                    "content": "AM"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4987",
+                "name": "Home_Clock",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4988",
+                    "name": "10:55",
+                    "type": "TEXT",
+                    "content": "10:55"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4989",
+                "name": "Btn_L",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4990",
+                    "name": "Start",
+                    "type": "TEXT",
+                    "content": "Start"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4991",
+                "name": "AI dot matrix",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4992",
+                    "name": "_AI / Stand by",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4993",
+                "name": "Btn_L",
+                "type": "INSTANCE",
+                "children": [
+                  {
+                    "id": "I31453:4993;20645:32497",
+                    "name": "Button",
+                    "type": "TEXT",
+                    "content": "Tap to control"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4994",
+                "name": "Status",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4995",
+                    "name": "Mute",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:4996",
+                        "name": "Webcam",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:4996;6970:17983",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:4997",
+                    "name": "Wifi",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:4998",
+                        "name": "WiFi / ON 3",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:4999",
+                            "name": "Icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:5000",
+                                "name": "Mask group",
+                                "type": "GROUP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31063:15687",
+            "name": "Standby",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31063:15688",
+                "name": "Background",
+                "type": "FRAME"
+              },
+              {
+                "id": "31063:15691",
+                "name": "AI Visual",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15694",
+                    "name": "Close",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31063:15695",
+                        "name": "Close Progress",
+                        "type": "INSTANCE",
+                        "interaction": {
+                          "trigger": "onClick",
+                          "navigate_to": "27372:31985"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31063:15696",
+                "name": "Stroke",
+                "type": "FRAME"
+              },
+              {
+                "id": "31063:15697",
+                "name": "Warning Stroke",
+                "type": "FRAME"
+              },
+              {
+                "id": "31063:15698",
+                "name": "AI",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15699",
+                    "name": "_AI / Stand by",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31063:15701",
+                "name": "Frame 2005120970",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15702",
+                    "name": "Label",
+                    "type": "TEXT",
+                    "content": "Record"
+                  }
+                ]
+              },
+              {
+                "id": "31063:15713",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15714",
+                    "name": "Join Video Call",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31063:15714;6709:16890",
+                        "name": "Icon",
+                        "type": "INSTANCE"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31063:15715",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15716",
+                    "name": "Calendar",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31063:15716;3823:9020",
+                        "name": "Icon",
+                        "type": "INSTANCE"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31063:15717",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15718",
+                    "name": "AI Visual",
+                    "type": "FRAME"
+                  },
+                  {
+                    "id": "31063:15721",
+                    "name": "Record",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31063:15722",
+                        "name": "Icon",
+                        "type": "FRAME"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31063:15727",
+                "name": "Time",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15728",
+                    "name": "Status",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31063:15729",
+                        "name": "Mute Mic",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31063:15729;3823:8769",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31063:15730",
+                        "name": "WiFi / ON",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31063:15730;3169:3815",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31063:15731",
+                        "name": "Battery 4 Bar",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31063:15731;6675:18580",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31063:15732",
+                    "name": "10 55",
+                    "type": "TEXT",
+                    "content": "10\n55"
+                  },
+                  {
+                    "id": "31063:15733",
+                    "name": "AM",
+                    "type": "TEXT",
+                    "content": "AM"
+                  }
+                ]
+              },
+              {
+                "id": "31063:15735",
+                "name": "Home_Clock",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15736",
+                    "name": "10:55",
+                    "type": "TEXT",
+                    "content": "10:55"
+                  }
+                ]
+              },
+              {
+                "id": "31063:15737",
+                "name": "Btn_L",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15738",
+                    "name": "Start",
+                    "type": "TEXT",
+                    "content": "Start"
+                  }
+                ]
+              },
+              {
+                "id": "31063:15739",
+                "name": "AI dot matrix",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31063:15740",
+                    "name": "_AI / Stand by",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31270:24219",
+                "name": "Btn_L",
+                "type": "INSTANCE",
+                "children": [
+                  {
+                    "id": "I31270:24219;20645:32497",
+                    "name": "Button",
+                    "type": "TEXT",
+                    "content": "Tap to control"
+                  }
+                ]
+              },
+              {
+                "id": "31453:1175",
+                "name": "Status",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1176",
+                    "name": "Mute",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1194",
+                        "name": "Webcam",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1194;6970:17983",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1178",
+                    "name": "Wifi",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1179",
+                        "name": "WiFi / ON 3",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1180",
+                            "name": "Icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1181",
+                                "name": "Mask group",
+                                "type": "GROUP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31453:2710",
+            "name": "Standby",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:2711",
+                "name": "Background",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:2714",
+                "name": "AI Visual",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2717",
+                    "name": "Close",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:2718",
+                        "name": "Close Progress",
+                        "type": "INSTANCE",
+                        "interaction": {
+                          "trigger": "onClick",
+                          "navigate_to": "27372:31985"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:2719",
+                "name": "Stroke",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:2720",
+                "name": "Warning Stroke",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:2721",
+                "name": "AI",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2722",
+                    "name": "_AI / Stand by",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2724",
+                "name": "Frame 2005120970",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2725",
+                    "name": "Label",
+                    "type": "TEXT",
+                    "content": "Record"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2726",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2727",
+                    "name": "Join Video Call",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:2727;6709:16890",
+                        "name": "Icon",
+                        "type": "INSTANCE"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:2728",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2729",
+                    "name": "Calendar",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:2729;3823:9020",
+                        "name": "Icon",
+                        "type": "INSTANCE"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:2730",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2731",
+                    "name": "AI Visual",
+                    "type": "FRAME"
+                  },
+                  {
+                    "id": "31453:2734",
+                    "name": "Record",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:2735",
+                        "name": "Icon",
+                        "type": "FRAME"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:2740",
+                "name": "Time",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2741",
+                    "name": "Status",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:2742",
+                        "name": "Mute Mic",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:2742;3823:8769",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:2743",
+                        "name": "WiFi / ON",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:2743;3169:3815",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:2744",
+                        "name": "Battery 4 Bar",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:2744;6675:18580",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:2745",
+                    "name": "10 55",
+                    "type": "TEXT",
+                    "content": "10\n55"
+                  },
+                  {
+                    "id": "31453:2746",
+                    "name": "AM",
+                    "type": "TEXT",
+                    "content": "AM"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2747",
+                "name": "Home_Clock",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2748",
+                    "name": "10:55",
+                    "type": "TEXT",
+                    "content": "10:55"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2749",
+                "name": "Btn_L",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2750",
+                    "name": "Start",
+                    "type": "TEXT",
+                    "content": "Start"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2751",
+                "name": "AI dot matrix",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2752",
+                    "name": "_AI / Stand by",
+                    "type": "INSTANCE"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2753",
+                "name": "Btn_L",
+                "type": "INSTANCE",
+                "children": [
+                  {
+                    "id": "I31453:2753;20645:32497",
+                    "name": "Button",
+                    "type": "TEXT",
+                    "content": "Tap to control"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2754",
+                "name": "Status",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2755",
+                    "name": "Mute",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:2756",
+                        "name": "Webcam",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:2756;6970:17983",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:2757",
+                    "name": "Wifi",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:2758",
+                        "name": "WiFi / ON 3",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:2759",
+                            "name": "Icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:2760",
+                                "name": "Mask group",
+                                "type": "GROUP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31063:13070",
+            "name": "Scenario",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31063:13071",
+                "name": "Connection to a PC via USB-C is detected.",
+                "type": "TEXT",
+                "content": "Connection to a PC via USB-C is detected."
+              }
+            ]
+          },
+          {
+            "id": "31063:13073",
+            "name": " ",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31063:13074",
+                "name": "AUTO",
+                "type": "TEXT",
+                "content": "AUTO"
+              }
+            ]
+          },
+          {
+            "id": "31063:13076",
+            "name": " ",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31063:13077",
+                "name": "After 5 seconds",
+                "type": "TEXT",
+                "content": "After 5 seconds"
+              }
+            ]
+          },
+          {
+            "id": "31063:15684",
+            "name": "Flow Banner",
+            "type": "INSTANCE",
+            "children": [
+              {
+                "id": "I31063:15684;396:264",
+                "name": "Flow title",
+                "type": "TEXT",
+                "content": "Standby → Connected to PC"
+              }
+            ]
+          },
+          {
+            "id": "31063:15768",
+            "name": "Flow Banner",
+            "type": "INSTANCE",
+            "children": [
+              {
+                "id": "I31063:15768;396:264",
+                "name": "Flow title",
+                "type": "TEXT",
+                "content": "Camera Mode Controls"
+              }
+            ]
+          },
+          {
+            "id": "31063:15770",
+            "name": "Controller",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31228:12590",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:12591",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12592",
+                        "name": "Volume",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31228:12592;6685:16721",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:12593",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12594",
+                        "name": "Volume",
+                        "type": "TEXT",
+                        "content": "Volume"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:665",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:666",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:667",
+                        "name": "Sign Out",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:667;3169:4551",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:668",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:669",
+                        "name": "Exit",
+                        "type": "TEXT",
+                        "content": "Exit"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31093:15875",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31093:15915",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31093:15916",
+                        "name": "Video",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31093:15916;3169:5034",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31093:15885",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31093:15886",
+                        "name": "Video ON",
+                        "type": "TEXT",
+                        "content": "Video ON"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31093:15887",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31093:15921",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31093:15922",
+                        "name": "Mic",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31093:15922;3823:8749",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31093:15890",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31093:15891",
+                        "name": "Mic ON",
+                        "type": "TEXT",
+                        "content": "Mic ON"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:12577",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:12578",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "32222:3768",
+                        "name": "Canvas Created By Me",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I32222:3768;10474:20422",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:12587",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12588",
+                        "name": "Follow ON",
+                        "type": "TEXT",
+                        "content": "Follow ON"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31093:15892",
+                "name": "Icon button - Calendar",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31270:24306",
+                    "name": "Btn_Icon_L",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31270:24306;30671:45681",
+                        "name": "Share Screen",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31270:24306;30671:45681;3823:9028",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31093:15895",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31093:15896",
+                        "name": "Share",
+                        "type": "TEXT",
+                        "content": "Share"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31114:16438",
+                "name": "Header_heading M",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31114:16439",
+                    "name": "arrow_back_ios",
+                    "type": "GROUP"
+                  },
+                  {
+                    "id": "31114:16442",
+                    "name": "Frame",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31114:16443",
+                        "name": "Cancel",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31114:16443;3169:4017",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31114:16444",
+                    "name": "Camera Controls",
+                    "type": "TEXT",
+                    "content": "Camera Controls"
+                  }
+                ]
+              },
+              {
+                "id": "31228:6946",
+                "name": "Indicators",
+                "type": "FRAME"
+              }
+            ]
+          },
+          {
+            "id": "31228:12451",
+            "name": "Controller",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31228:12564",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:12565",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12566",
+                        "name": "Volume",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31228:12566;6685:16721",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:12567",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12568",
+                        "name": "Volume",
+                        "type": "TEXT",
+                        "content": "Volume"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:12464",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:12465",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12466",
+                        "name": "Mute Video",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31228:12466;6675:19250",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:12467",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12468",
+                        "name": "Video OFF",
+                        "type": "TEXT",
+                        "content": "Video OFF"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:12469",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:12470",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12471",
+                        "name": "Mute Mic",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31228:12471;3823:8769",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:12472",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12473",
+                        "name": "Mic OFF",
+                        "type": "TEXT",
+                        "content": "Mic OFF"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:12551",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:12552",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "32222:3742",
+                        "name": "Canvas Created By Me",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I32222:3742;10474:20459",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:12561",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12562",
+                        "name": "Follow OFF",
+                        "type": "TEXT",
+                        "content": "Follow OFF"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:12479",
+                "name": "Icon button - Calendar",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:12480",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12481",
+                        "name": "Share Screen",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31228:12481;3823:9032",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:12482",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:12483",
+                        "name": "Share",
+                        "type": "TEXT",
+                        "content": "Share"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31270:12849",
+                "name": "Header_heading M",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31270:12850",
+                    "name": "arrow_back_ios",
+                    "type": "GROUP"
+                  },
+                  {
+                    "id": "31270:12853",
+                    "name": "Frame",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31270:12854",
+                        "name": "Cancel",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31270:12854;3169:4017",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31270:12855",
+                    "name": "Camera Controls",
+                    "type": "TEXT",
+                    "content": "Camera Controls"
+                  }
+                ]
+              },
+              {
+                "id": "31228:12491",
+                "name": "Indicators",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:695",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:696",
+                    "name": "container",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:697",
+                        "name": "Sign Out",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:697;3169:4551",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:698",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:699",
+                        "name": "Exit",
+                        "type": "TEXT",
+                        "content": "Exit"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "32259:1358",
+            "name": "Icon",
+            "type": "INSTANCE"
+          },
+          {
+            "id": "31228:6979",
+            "name": "Volume Control",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31228:7094",
+                "name": "Frame 2005120724",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:7095",
+                    "name": "Frame 2005120504",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:7096",
+                        "name": "Frame 1005120605",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31228:7097",
+                            "name": "Mic",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31228:7097;3823:8747",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:7041",
+                "name": "Frame 2005120723",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:7043",
+                    "name": "Frame 2005120504",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:7044",
+                        "name": "Frame 1005120605",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31228:7045",
+                            "name": "Volume",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31228:7045;6685:16719",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:7105",
+                "name": "Header_heading M",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:7106",
+                    "name": "arrow_back_ios",
+                    "type": "GROUP"
+                  },
+                  {
+                    "id": "31228:7109",
+                    "name": "Frame",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:7110",
+                        "name": "Chevron / Left",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31228:7110;3169:3918",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:7111",
+                    "name": "Volume",
+                    "type": "TEXT",
+                    "content": "Volume"
+                  }
+                ]
+              },
+              {
+                "id": "31228:7123",
+                "name": "Speaker",
+                "type": "TEXT",
+                "content": "Speaker"
+              },
+              {
+                "id": "31228:7125",
+                "name": "Microphone",
+                "type": "TEXT",
+                "content": "Microphone"
+              }
+            ]
+          },
+          {
+            "id": "31228:7128",
+            "name": "Volume Control",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31228:7130",
+                "name": "Frame 2005120724",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:7131",
+                    "name": "Frame 2005120504",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:7132",
+                        "name": "Frame 1005120605",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31228:7133",
+                            "name": "Mute Mic",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31228:7133;3823:8767",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:7134",
+                "name": "Frame 2005120723",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:7135",
+                    "name": "Frame 2005120504",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:7136",
+                        "name": "Frame 1005120605",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31228:7137",
+                            "name": "Mute Volume",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31228:7137;6966:17447",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31228:7138",
+                "name": "Header_heading M",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31228:7139",
+                    "name": "arrow_back_ios",
+                    "type": "GROUP"
+                  },
+                  {
+                    "id": "31228:7142",
+                    "name": "Frame",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31228:7143",
+                        "name": "Chevron / Left",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31228:7143;3169:3918",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31228:7144",
+                    "name": "Volume",
+                    "type": "TEXT",
+                    "content": "Volume"
+                  }
+                ]
+              },
+              {
+                "id": "31228:7145",
+                "name": "Speaker",
+                "type": "TEXT",
+                "content": "Speaker"
+              },
+              {
+                "id": "31228:7146",
+                "name": "Microphone",
+                "type": "TEXT",
+                "content": "Microphone"
+              }
+            ]
+          },
+          {
+            "id": "31114:16749",
+            "name": "Annotation",
+            "type": "INSTANCE",
+            "children": [
+              {
+                "id": "I31114:16749;101:57",
+                "name": "_Foundation / Variable",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "I31114:16749;105:56",
+                    "name": "Icon",
+                    "type": "FRAME"
+                  },
+                  {
+                    "id": "I31114:16749;101:59",
+                    "name": "Label",
+                    "type": "TEXT",
+                    "content": "Disable when standalone"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31270:24320",
+            "name": "Annotation",
+            "type": "INSTANCE",
+            "children": [
+              {
+                "id": "I31270:24320;101:57",
+                "name": "_Foundation / Variable",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "I31270:24320;105:56",
+                    "name": "Icon",
+                    "type": "FRAME"
+                  },
+                  {
+                    "id": "I31270:24320;101:59",
+                    "name": "Label",
+                    "type": "TEXT",
+                    "content": "Available when connected to TV"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31453:1752",
+            "name": "Bot",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:1753",
+                "name": "Icon button - Cast",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1754",
+                    "name": "Btn_L",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1755",
+                        "name": "UserSound",
+                        "type": "FRAME"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1757",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1758",
+                        "name": "Active",
+                        "type": "TEXT",
+                        "content": "Active"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:1759",
+                "name": "Header_heading M",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1760",
+                    "name": "arrow_back_ios",
+                    "type": "GROUP"
+                  },
+                  {
+                    "id": "31453:1763",
+                    "name": "Frame",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1764",
+                        "name": "Cancel",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1764;3169:4017",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1765",
+                    "name": "Menu",
+                    "type": "TEXT",
+                    "content": "Menu"
+                  }
+                ]
+              },
+              {
+                "id": "31453:1766",
+                "name": "Frame 2005120964",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1767",
+                    "name": "Title",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1768",
+                        "name": "Utilities",
+                        "type": "TEXT",
+                        "content": "Utilities"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1769",
+                    "name": "Top",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1770",
+                        "name": "List item",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1771",
+                            "name": "Frame 2005120966",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1772",
+                                "name": "Frame 2005120955",
+                                "type": "FRAME",
+                                "children": [
+                                  {
+                                    "id": "31453:1773",
+                                    "name": "Calendar",
+                                    "type": "INSTANCE",
+                                    "children": [
+                                      {
+                                        "id": "I31453:1773;3823:9014",
+                                        "name": "Icon",
+                                        "type": "INSTANCE"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "31453:1774",
+                                "name": "Text",
+                                "type": "TEXT",
+                                "content": "View calendar"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "31453:1775",
+                            "name": "Right icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1776",
+                                "name": "Chevron / Right",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:1776;3169:3944",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1777",
+                        "name": "List item",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1778",
+                            "name": "Frame 2005120966",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1779",
+                                "name": "Frame 2005120955",
+                                "type": "FRAME",
+                                "children": [
+                                  {
+                                    "id": "31453:1780",
+                                    "name": "Webcam",
+                                    "type": "INSTANCE",
+                                    "children": [
+                                      {
+                                        "id": "I31453:1780;6970:17983",
+                                        "name": "Icon",
+                                        "type": "INSTANCE"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "31453:1781",
+                                "name": "Text",
+                                "type": "TEXT",
+                                "content": "Camera mode"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "31453:1782",
+                            "name": "Right icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1783",
+                                "name": "Chevron / Right",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:1783;3169:3944",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1784",
+                        "name": "List item",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1785",
+                            "name": "Frame 2005120966",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1786",
+                                "name": "Frame 2005120955",
+                                "type": "FRAME",
+                                "children": [
+                                  {
+                                    "id": "31453:1787",
+                                    "name": "Share Screen",
+                                    "type": "INSTANCE",
+                                    "children": [
+                                      {
+                                        "id": "I31453:1787;3823:9030",
+                                        "name": "Icon",
+                                        "type": "INSTANCE"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "31453:1788",
+                                "name": "Text",
+                                "type": "TEXT",
+                                "content": "Share screen"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "31453:1789",
+                            "name": "Right icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1790",
+                                "name": "Chevron / Right",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:1790;3169:3946",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1791",
+                        "name": "List item",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1792",
+                            "name": "Frame 2005120966",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1793",
+                                "name": "Frame 2005120955",
+                                "type": "FRAME",
+                                "children": [
+                                  {
+                                    "id": "31453:1794",
+                                    "name": "Setting",
+                                    "type": "INSTANCE",
+                                    "children": [
+                                      {
+                                        "id": "I31453:1794;3823:9165",
+                                        "name": "Icon",
+                                        "type": "INSTANCE"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "31453:1795",
+                                "name": "Text",
+                                "type": "TEXT",
+                                "content": "Setting"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "31453:1796",
+                            "name": "Right icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1797",
+                                "name": "Chevron / Right",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:1797;3169:3944",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:1798",
+                "name": "Login",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1799",
+                    "name": "avatar/workspace",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1800",
+                        "name": "Avatar",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1801",
+                            "name": "Group 1002545",
+                            "type": "GROUP",
+                            "children": [
+                              {
+                                "id": "31453:1803",
+                                "name": "Group 1002546",
+                                "type": "GROUP"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "31453:1806",
+                            "name": "Group 1002546",
+                            "type": "GROUP",
+                            "children": [
+                              {
+                                "id": "31453:1808",
+                                "name": "User",
+                                "type": "FRAME"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1810",
+                    "name": "Action buttons",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1811",
+                        "name": "Btn - Cancel",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1812",
+                            "name": "Btn_close_small",
+                            "type": "GROUP"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1815",
+                        "name": "Btn_L",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1815;6715:4853",
+                            "name": "Button",
+                            "type": "TEXT",
+                            "content": "Sign in"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:1816",
+                "name": "Scrollbar",
+                "type": "GROUP"
+              }
+            ]
+          },
+          {
+            "id": "31453:1820",
+            "name": "Camera mode",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:1821",
+                "name": "Background",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:1824",
+                "name": "wrapper",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1825",
+                    "name": "Button",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1826",
+                        "name": "text label",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1827",
+                            "name": "Share Screen",
+                            "type": "TEXT",
+                            "content": "Share Screen"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1828",
+                        "name": "Frame 2005120815",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1829",
+                            "name": "Icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1830",
+                                "name": "Calendar",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:1830;3823:9012",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "id": "31453:1831",
+                            "name": "Start / Join",
+                            "type": "TEXT",
+                            "content": "Start / Join"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1832",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1833",
+                        "name": "Start / Join",
+                        "type": "TEXT",
+                        "content": "Start / Join"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1834",
+                    "name": "Button",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1835",
+                        "name": "text label",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1836",
+                            "name": "Share Screen",
+                            "type": "TEXT",
+                            "content": "Share Screen"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1837",
+                        "name": "Icon",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1838",
+                            "name": "User",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31453:1838;3169:5166",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1839",
+                    "name": "Frame 2005120804",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1840",
+                        "name": "Icon",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1841",
+                            "name": "_record",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1842",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1843",
+                        "name": "History",
+                        "type": "TEXT",
+                        "content": "History"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:1844",
+                "name": "Top Info",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1845",
+                    "name": "Status",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1846",
+                        "name": "Mute Mic",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1846;3823:8769",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1847",
+                        "name": "WiFi / ON",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1847;3169:3815",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1848",
+                        "name": "Battery 4 Bar",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1848;6675:18580",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1849",
+                    "name": "Time & Date",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1850",
+                        "name": "Time",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1851",
+                            "name": "10:55",
+                            "type": "TEXT",
+                            "content": "10:55"
+                          },
+                          {
+                            "id": "31453:1852",
+                            "name": "AM",
+                            "type": "TEXT",
+                            "content": "AM"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1853",
+                        "name": "Date",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1854",
+                            "name": "Monday, Mar 10",
+                            "type": "TEXT",
+                            "content": "Monday, Mar 10"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:1856",
+                "name": "Scrollbar",
+                "type": "GROUP"
+              },
+              {
+                "id": "31453:1860",
+                "name": "Header_heading M",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1861",
+                    "name": "arrow_back_ios",
+                    "type": "GROUP"
+                  },
+                  {
+                    "id": "31453:1864",
+                    "name": "Cancel",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:1864;3169:4017",
+                        "name": "Icon",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1864;3169:4017;3169:3918",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1865",
+                    "name": "Camera mode",
+                    "type": "TEXT",
+                    "content": "Camera mode"
+                  }
+                ]
+              },
+              {
+                "id": "31453:1866",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1867",
+                    "name": "Frame 2005120957",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1868",
+                        "name": "Text",
+                        "type": "TEXT",
+                        "content": "Connect to PC via USB-C to use Bot as a camera"
+                      },
+                      {
+                        "id": "31453:1869",
+                        "name": "To use Bot as a camera.",
+                        "type": "TEXT",
+                        "content": "To use Bot as a camera."
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1870",
+                    "name": "Bot pic",
+                    "type": "GROUP",
+                    "children": [
+                      {
+                        "id": "31453:1872",
+                        "name": "Group 1000004363",
+                        "type": "GROUP",
+                        "children": [
+                          {
+                            "id": "31453:1874",
+                            "name": "Mask group",
+                            "type": "GROUP"
+                          },
+                          {
+                            "id": "31453:1879",
+                            "name": "USB-C 1",
+                            "type": "GROUP"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1883",
+                    "name": "Frame 2005120968",
+                    "type": "FRAME"
+                  }
+                ]
+              },
+              {
+                "id": "31453:1887",
+                "name": "Tracking",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1888",
+                    "name": "Frame 2005120968",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1889",
+                        "name": "Auto Tracking / ON",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1889;6691:16940",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1890",
+                        "name": "No connection",
+                        "type": "TEXT",
+                        "content": "No connection"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1891",
+                    "name": "Switch",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:1891;30172:36897",
+                        "name": "Indicator",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "I31453:1891;30172:36898",
+                            "name": "Cancel",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31453:1891;30172:36898;3169:4023",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1892",
+                    "name": "Switch",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:1892;6864:15619",
+                        "name": "Indicator",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "I31453:1892;8184:21024",
+                            "name": "Check",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31453:1892;8184:21024;3169:4096",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31453:1961",
+            "name": "Camera mode",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:1962",
+                "name": "Background",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:1965",
+                "name": "wrapper",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1966",
+                    "name": "Button",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1967",
+                        "name": "text label",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1968",
+                            "name": "Share Screen",
+                            "type": "TEXT",
+                            "content": "Share Screen"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1969",
+                        "name": "Frame 2005120815",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1970",
+                            "name": "Icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "31453:1971",
+                                "name": "Calendar",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:1971;3823:9012",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "id": "31453:1972",
+                            "name": "Start / Join",
+                            "type": "TEXT",
+                            "content": "Start / Join"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1973",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1974",
+                        "name": "Start / Join",
+                        "type": "TEXT",
+                        "content": "Start / Join"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1975",
+                    "name": "Button",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1976",
+                        "name": "text label",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1977",
+                            "name": "Share Screen",
+                            "type": "TEXT",
+                            "content": "Share Screen"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1978",
+                        "name": "Icon",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1979",
+                            "name": "User",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31453:1979;3169:5166",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1980",
+                    "name": "Frame 2005120804",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1981",
+                        "name": "Icon",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1982",
+                            "name": "_record",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1983",
+                    "name": "text label",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1984",
+                        "name": "History",
+                        "type": "TEXT",
+                        "content": "History"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:1985",
+                "name": "Top Info",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:1986",
+                    "name": "Status",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1987",
+                        "name": "Mute Mic",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1987;3823:8769",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1988",
+                        "name": "WiFi / ON",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1988;3169:3815",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1989",
+                        "name": "Battery 4 Bar",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:1989;6675:18580",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:1990",
+                    "name": "Time & Date",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:1991",
+                        "name": "Time",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1992",
+                            "name": "10:55",
+                            "type": "TEXT",
+                            "content": "10:55"
+                          },
+                          {
+                            "id": "31453:1993",
+                            "name": "AM",
+                            "type": "TEXT",
+                            "content": "AM"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "31453:1994",
+                        "name": "Date",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "31453:1995",
+                            "name": "Monday, Mar 10",
+                            "type": "TEXT",
+                            "content": "Monday, Mar 10"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "31453:1997",
+                "name": "Scrollbar",
+                "type": "GROUP"
+              },
+              {
+                "id": "31453:2001",
+                "name": "Header_heading M",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:2002",
+                    "name": "arrow_back_ios",
+                    "type": "GROUP"
+                  },
+                  {
+                    "id": "31453:2005",
+                    "name": "Cancel",
+                    "type": "INSTANCE",
+                    "children": [
+                      {
+                        "id": "I31453:2005;3169:4017",
+                        "name": "Icon",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:2005;3169:4017;3169:3918",
+                            "name": "Icon",
+                            "type": "INSTANCE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:2006",
+                    "name": "Camera mode",
+                    "type": "TEXT",
+                    "content": "Camera mode"
+                  }
+                ]
+              },
+              {
+                "id": "31453:5057",
+                "name": "Icon",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:5058",
+                    "name": "Frame 2005120957",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "31453:5059",
+                        "name": "Text",
+                        "type": "TEXT",
+                        "content": "Connect to PC via USB-C to use Bot as a camera"
+                      },
+                      {
+                        "id": "31453:5060",
+                        "name": "To use Bot as a camera.",
+                        "type": "TEXT",
+                        "content": "To use Bot as a camera."
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:5061",
+                    "name": "Bot pic",
+                    "type": "GROUP",
+                    "children": [
+                      {
+                        "id": "31453:5063",
+                        "name": "Group 1000004363",
+                        "type": "GROUP",
+                        "children": [
+                          {
+                            "id": "31453:5065",
+                            "name": "Mask group",
+                            "type": "GROUP"
+                          },
+                          {
+                            "id": "31453:5070",
+                            "name": "USB-C 1",
+                            "type": "GROUP"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "31453:5072",
+                    "name": "Frame 2005120968",
+                    "type": "FRAME"
+                  }
+                ]
+              },
+              {
+                "id": "31453:2086",
+                "name": "List item",
+                "type": "INSTANCE",
+                "children": [
+                  {
+                    "id": "I31453:2086;6729:5740",
+                    "name": "Wrapper",
+                    "type": "FRAME",
+                    "children": [
+                      {
+                        "id": "I31453:2086;6729:5741",
+                        "name": "Left",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "I31453:2086;6729:5742",
+                            "name": "Left icon",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "I31453:2086;6729:5743",
+                                "name": "Globe",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:2086;6729:5743;3823:8666",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "id": "I31453:2086;6729:5744",
+                            "name": "Text",
+                            "type": "TEXT",
+                            "content": "Switch to Camera mode"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "I31453:2086;6729:5745",
+                        "name": "Right icon",
+                        "type": "FRAME",
+                        "children": [
+                          {
+                            "id": "I31453:2086;6729:5746",
+                            "name": "Chevron / Right",
+                            "type": "INSTANCE",
+                            "children": [
+                              {
+                                "id": "I31453:2086;6729:5746;3169:3944",
+                                "name": "Icon",
+                                "type": "INSTANCE"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "id": "I31453:2086;6864:15672",
+                        "name": "Switch",
+                        "type": "INSTANCE",
+                        "children": [
+                          {
+                            "id": "I31453:2086;6864:15672;6864:15616",
+                            "name": "Indicator",
+                            "type": "FRAME",
+                            "children": [
+                              {
+                                "id": "I31453:2086;6864:15672;8184:20935",
+                                "name": "Cancel",
+                                "type": "INSTANCE",
+                                "children": [
+                                  {
+                                    "id": "I31453:2086;6864:15672;8184:20935;3169:4023",
+                                    "name": "Icon",
+                                    "type": "INSTANCE"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "31453:1893",
+            "name": "Flow Banner",
+            "type": "INSTANCE",
+            "children": [
+              {
+                "id": "I31453:1893;396:264",
+                "name": "Flow title",
+                "type": "TEXT",
+                "content": "Menu → Camera Mode"
+              }
+            ]
+          },
+          {
+            "id": "31453:4937",
+            "name": "Connecting",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:4938",
+                "name": "Background",
+                "type": "FRAME"
+              },
+              {
+                "id": "31453:4941",
+                "name": "line-md:loading-twotone-loop",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "31453:4942",
+                    "name": "Group",
+                    "type": "GROUP"
+                  }
+                ]
+              },
+              {
+                "id": "31453:4945",
+                "name": "Initiating...",
+                "type": "TEXT",
+                "content": "Initiating..."
+              },
+              {
+                "id": "31453:4946",
+                "name": "Bot is now a camera for your PC. AI features are still accessible.",
+                "type": "TEXT",
+                "content": "Bot is now a camera for your PC. AI features are still accessible."
+              }
+            ]
+          },
+          {
+            "id": "31228:7198",
+            "name": " ",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31228:7199",
+                "name": "Drag to the end",
+                "type": "TEXT",
+                "content": "Drag to the end"
+              }
+            ]
+          },
+          {
+            "id": "31228:12606",
+            "name": " ",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31228:12607",
+                "name": "Volume",
+                "type": "TEXT",
+                "content": "Volume"
+              }
+            ]
+          },
+          {
+            "id": "31228:12608",
+            "name": " ",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31228:12609",
+                "name": "Toggle OFF",
+                "type": "TEXT",
+                "content": "Toggle OFF"
+              }
+            ]
+          },
+          {
+            "id": "31453:2705",
+            "name": " ",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:2706",
+                "name": "Not connected",
+                "type": "TEXT",
+                "content": "Not connected"
+              }
+            ]
+          },
+          {
+            "id": "31453:2708",
+            "name": " ",
+            "type": "FRAME",
+            "children": [
+              {
+                "id": "31453:2709",
+                "name": "Connected",
+                "type": "TEXT",
+                "content": "Connected"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+
+### Instructions:
+1.  **Analyze the Structure**: Identify the main screens (Top-level Frames).
+2.  **Identify Elements**: Look for interactive elements like Buttons (often INSTANCE or COMPONENT), Inputs, and Navigation links.
+3.  **Infer Functionality**: Based on the text content (e.g., "Login", "Submit", "Error") and structure, infer the intended functionality.
+4.  **Generate a PRD**: Create a Product Requirement Document in Markdown format.
+5.  **Language**: The output MUST be in Simplified Chinese (zh-CN).
+
+### Output Format (Markdown):
+# 产品需求文档 (PRD)
+
+## 1. 概述
+[根据设计简要描述功能模块]
+
+## 2. 用户流程
+[描述用户在页面间的流转路径]
+
+## 3. 页面详情
+### [页面名称]
+*   **元素**:
+    *   [元素名称/文案]: [类型] - [描述]
+*   **交互**:
+    *   [动作]: [结果]
+*   **逻辑**:
+    *   [隐含的校验或状态变化]
+
+(Repeat for all screens)

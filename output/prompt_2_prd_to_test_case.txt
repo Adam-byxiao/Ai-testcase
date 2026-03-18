@@ -1,0 +1,43 @@
+
+You are a Senior QA Engineer.
+Your task is to generate a comprehensive set of test cases based on the provided Product Requirement Document (PRD).
+
+### Input PRD:
+# 产品需求文档 (PRD): 摄像机模式 - 独立运行 (Camera Mode - Standalone)
+
+## 1. 概述
+"Camera Mode"（摄像机模式）允许用户与 AI 视觉界面进行交互。初始状态为 "Standby"（待机），显示时钟和 AI 视觉指示器。用户可以通过点击按钮启动交互。
+
+## 2. 用户流程
+1.  **开始**: 用户看到 **Standby** (待机) 页面。
+2.  **动作**: 用户点击 "Tap to start" (点击开始) 按钮。
+3.  **流转**: 系统跳转到激活的 AI 交互模式 (目标节点: 30409:36500)。
+
+## 3. 页面详情
+
+### 页面: Standby (待机)
+*   **视觉元素**:
+    *   **AI Visual**: 位于屏幕中央的视觉元素，代表 AI 的存在。
+    *   **Home_Clock**: 显示当前时间 (例如 "10:55")。
+    *   **AI dot matrix**: 状态指示器，显示 "_AI / Stand by"。
+*   **交互元素**:
+    *   **Tap to start** (按钮):
+        *   **类型**: 主要操作按钮。
+        *   **文案**: "Tap to start"。
+        *   **交互**: 点击 -> 跳转至页面 ID 30409:36500。
+
+## 4. 技术需求
+*   确保时钟实时更新。
+*   "AI Visual" 框架应支持定义的动画状态。
+
+
+### Instructions:
+1.  **Cover All Scenarios**: Include Happy Path (Success), Edge Cases (Errors, Empty States), and UI Validation.
+2.  **Structure**: Output the test cases in a clear Markdown table.
+3.  **Language**: The output MUST be in Simplified Chinese (zh-CN).
+
+### Output Format (Markdown Table):
+| 用例编号 | 测试场景 | 前置条件 | 测试步骤 | 预期结果 | 优先级 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| TC-001 | [场景名称] | [前置条件] | 1. [步骤 1]<br>2. [步骤 2] | [预期结果] | High/Med/Low |
+
