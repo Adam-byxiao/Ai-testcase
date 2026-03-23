@@ -34,13 +34,15 @@ def _fetch_figma_api_json(file_key: str, node_id: str | None = None) -> dict:
     figma_proxy = os.getenv("FIGMA_PROXY")
     if figma_proxy:
         proxies = {"http": figma_proxy, "https": figma_proxy}
+    timeout_env = os.getenv("FIGMA_TIMEOUT_SEC") or os.getenv("FIGMA_TIMEOUT")
+    timeout = float(timeout_env) if timeout_env else 60.0
 
     if node_id:
         url = f"https://api.figma.com/v1/files/{file_key}/nodes"
-        resp = requests.get(url, headers=headers, params={"ids": node_id}, timeout=20, proxies=proxies or None)
+        resp = requests.get(url, headers=headers, params={"ids": node_id}, timeout=timeout, proxies=proxies or None)
     else:
         url = f"https://api.figma.com/v1/files/{file_key}"
-        resp = requests.get(url, headers=headers, timeout=20, proxies=proxies or None)
+        resp = requests.get(url, headers=headers, timeout=timeout, proxies=proxies or None)
 
     if resp.status_code != 200:
         raise ValueError(f"Figma API error {resp.status_code}: {resp.text}")

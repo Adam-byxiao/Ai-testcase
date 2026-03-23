@@ -107,6 +107,116 @@ def _infer_pin_side(name: str) -> str:
     return "left"
 
 
+def _bbox_union(a: list[float], b: list[float]) -> list[float]:
+    ax, ay, aw, ah = a
+    bx, by, bw, bh = b
+    x1 = min(ax, bx)
+    y1 = min(ay, by)
+    x2 = max(ax + aw, bx + bw)
+    y2 = max(ay + ah, by + bh)
+    return [x1, y1, x2 - x1, y2 - y1]
+
+
+def _bbox_iou(a: list[float], b: list[float]) -> float:
+    ax, ay, aw, ah = a
+    bx, by, bw, bh = b
+    x1 = max(ax, bx)
+    y1 = max(ay, by)
+    x2 = min(ax + aw, bx + bw)
+    y2 = min(ay + ah, by + bh)
+    inter_w = max(0.0, x2 - x1)
+    inter_h = max(0.0, y2 - y1)
+    inter = inter_w * inter_h
+    if inter <= 0:
+        return 0.0
+    union = aw * ah + bw * bh - inter
+    return inter / union if union > 0 else 0.0
+
+
+def _bbox_contains(a: list[float], b: list[float]) -> float:
+    ax, ay, aw, ah = a
+    bx, by, bw, bh = b
+    x1 = max(ax, bx)
+    y1 = max(ay, by)
+    x2 = min(ax + aw, bx + bw)
+    y2 = min(ay + ah, by + bh)
+    inter_w = max(0.0, x2 - x1)
+    inter_h = max(0.0, y2 - y1)
+    inter = inter_w * inter_h
+    area_b = bw * bh
+    return inter / area_b if area_b > 0 else 0.0
+
+
+def _merge_sections(target: list[dict], incoming: list[dict]) -> list[dict]:
+    by_title = {s["title"]: list(s.get("pins", [])) for s in target}
+    for s in incoming:
+        by_title.setdefault(s["title"], [])
+        by_title[s["title"]].extend(s.get("pins", []))
+    # stable order
+    order = ["FIXED", "SCROLLS", "HEADER", "FOOTER", "MAIN"]
+    out = []
+    for k in order:
+        if k in by_title:
+            out.append({"title": k, "pins": by_title[k]})
+    for k, v in by_title.items():
+        if k not in order:
+            out.append({"title": k, "pins": v})
+    return out
+
+
+def _merge_nodes_by_visual(nodes: list[dict]) -> list[dict]:
+    groups = []
+    for n in nodes:
+        merged = False
+        nb = n.get("bbox")
+        if not nb:
+            continue
+        for g in groups:
+            gb = g.get("bbox")
+            if not gb:
+                continue
+            iou = _bbox_iou(nb, gb)
+            contain = max(_bbox_contains(gb, nb), _bbox_contains(nb, gb))
+            if iou > 0.15 or contain > 0.8:
+                g["bbox"] = _bbox_union(gb, nb)
+                g["sections"] = _merge_sections(g.get("sections", []), n.get("sections", []))
+                g["name"] = f"{g['name']} + {n['name']}"
+                merged = True
+                break
+        if not merged:
+            groups.append(n)
+    return groups
+
+
+def _semantic_key(name: str) -> str:
+    n = name.lower().strip()
+    for sep in [" / ", "/", "-", "_"]:
+        if sep in n:
+            n = n.split(sep)[0]
+            break
+    n = re.sub(r"\d+", "", n)
+    n = re.sub(r"\s+", " ", n).strip()
+    keywords = ["header", "footer", "nav", "tab", "panel", "dialog", "modal", "card", "list", "button", "icon"]
+    for k in keywords:
+        if k in n:
+            return k
+    return n[:24] if n else "group"
+
+
+def _merge_nodes_by_semantic(nodes: list[dict]) -> list[dict]:
+    buckets: dict[str, dict] = {}
+    for n in nodes:
+        key = _semantic_key(n.get("name") or "")
+        if key not in buckets:
+            buckets[key] = {**n}
+            buckets[key]["name"] = n.get("name") or key
+        else:
+            buckets[key]["bbox"] = _bbox_union(buckets[key]["bbox"], n["bbox"])
+            buckets[key]["sections"] = _merge_sections(buckets[key].get("sections", []), n.get("sections", []))
+            buckets[key]["name"] = f"{buckets[key]['name']} + {n['name']}"
+    return list(buckets.values())
+
+
 @app.get("/api/blueprint/nodes")
 async def blueprint_nodes(file_key: Optional[str] = None, node_id: Optional[str] = None):
     try:
@@ -311,3 +421,98 @@ async def save_connections(payload: BlueprintConnections):
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     return {"ok": True, "path": report_path}
+
+
+@app.get("/api/blueprint/layers")
+async def blueprint_layers(file_key: Optional[str] = None, node_id: Optional[str] = None, mode: Optional[str] = "A"):
+    try:
+        if not file_key:
+            raise HTTPException(status_code=400, detail="file_key is required")
+        if file_key and "http" in file_key:
+            fk, nid = _parse_figma_url(file_key)
+            file_key = fk or file_key
+            node_id = nid or node_id
+        if node_id and "-" in node_id and ":" not in node_id:
+            node_id = node_id.replace("-", ":")
+        if not node_id:
+            raise HTTPException(status_code=400, detail="node_id is required for blueprint layers")
+
+        raw_json = fetch_figma_api_json(file_key, node_id=node_id)
+        root = _find_node_document(raw_json, node_id)
+        if not root:
+            raise HTTPException(status_code=404, detail="node not found")
+
+        root_bbox = _extract_bbox(root)
+
+        nodes = []
+        for child in (root.get("children") or []):
+            if not isinstance(child, dict):
+                continue
+            child_bbox = _extract_bbox(child)
+            if not child_bbox:
+                continue
+            child_name = (child.get("name") or "").strip()
+            if not child_name:
+                continue
+
+            tmp = []
+            _walk(child, tmp)
+            pins = []
+            for n, depth, path in tmp:
+                if depth == 0:
+                    continue
+                name = (n.get("name") or "").strip()
+                if not name:
+                    continue
+                if n.get("visible") is False:
+                    continue
+                pins.append({
+                    "id": n.get("id"),
+                    "name": name,
+                    "type": n.get("type"),
+                    "depth": depth,
+                    "path": " / ".join([p for p in path if p]),
+                    "bbox": _extract_bbox(n),
+                    "section": _infer_section(name),
+                    "side": _infer_pin_side(name),
+                })
+
+            sections = {}
+            for p in pins:
+                sections.setdefault(p["section"], []).append(p)
+            section_list = []
+            for k in ["FIXED", "SCROLLS", "HEADER", "FOOTER", "MAIN"]:
+                if k in sections:
+                    section_list.append({"title": k, "pins": sections[k]})
+            for k, v in sections.items():
+                if k not in {s["title"] for s in section_list}:
+                    section_list.append({"title": k, "pins": v})
+
+            nodes.append({
+                "id": child.get("id"),
+                "name": child_name,
+                "type": child.get("type"),
+                "bbox": child_bbox,
+                "sections": section_list
+            })
+
+        mode_norm = (mode or "A").upper()
+        if mode_norm == "B":
+            nodes = _merge_nodes_by_visual(nodes)
+        elif mode_norm == "C":
+            nodes = _merge_nodes_by_semantic(nodes)
+
+        image_url, used_node_id = export_figma_image(file_key, node_id=node_id)
+        return {
+            "figma": {
+                "file_key": file_key,
+                "node_id": used_node_id,
+                "image_url": image_url,
+                "root_bbox": root_bbox
+            },
+            "mode": mode or "A",
+            "nodes": nodes
+        }
+    except Exception as e:
+        print(f"[Blueprint] layers_failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
