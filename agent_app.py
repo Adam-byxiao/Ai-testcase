@@ -5,7 +5,11 @@ from langchain_core.tools import tool
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
-from figma_mcp import _parse_figma_design_impl as figma_mcp_tool
+from figma_mcp import _parse_figma_design_impl as figma_mcp_tool, parse_figma_file_detailed
+from figma_image_exporter import export_figma_image
+from vision_parser import parse_ui_from_image
+from semantic_fuser import fuse_ui_contexts
+import json
 from proxy_manager import get_proxy_client, get_async_proxy_client
 
 # --- Define Tools ---
@@ -19,6 +23,43 @@ def get_figma_context(file_path: str) -> str:
     # Directly call the function from our MCP implementation
     # This allows us to use the same logic locally without a running MCP server
     return figma_mcp_tool(file_path)
+
+@tool
+def get_figma_visual_context(file_key: str, node_id: str | None = None) -> str:
+    """
+    Exports a Figma page/frame image and parses it via a multimodal model.
+    Returns visual UI context as JSON string.
+    """
+    image_url, used_node_id = export_figma_image(file_key, node_id=node_id)
+    visual_context = parse_ui_from_image(image_url)
+    payload = {
+        "node_id": used_node_id,
+        "image_url": image_url,
+        "visual_context": visual_context
+    }
+    return json.dumps(payload, ensure_ascii=False)
+
+@tool
+def merge_figma_contexts(json_context: str, visual_context: str) -> str:
+    """
+    Merge JSON structural context and visual context into a single JSON context.
+    """
+    return fuse_ui_contexts(json_context, visual_context)
+
+@tool
+def get_figma_merged_context(file_key: str, node_id: str | None = None) -> str:
+    """
+    Get merged context from Figma JSON + visual parsing.
+    """
+    image_url, used_node_id = export_figma_image(file_key, node_id=node_id)
+    visual_context = parse_ui_from_image(image_url)
+    visual_payload = json.dumps({
+        "node_id": used_node_id,
+        "image_url": image_url,
+        "visual_context": visual_context
+    }, ensure_ascii=False)
+    json_context = parse_figma_file_detailed(file_key, node_id=node_id)
+    return fuse_ui_contexts(json_context, visual_payload)
 
 # --- Define Agent State ---
 
@@ -45,7 +86,7 @@ class FigmaAgent:
             kwargs["base_url"] = base_url
             
         self.llm = ChatOpenAI(**kwargs)
-        self.tools = [get_figma_context]
+        self.tools = [get_figma_context, get_figma_visual_context, merge_figma_contexts, get_figma_merged_context]
         self.llm_with_tools = self.llm.bind_tools(self.tools)
         self.graph = self._build_graph()
 

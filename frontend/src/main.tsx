@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import './utils/request' // Initialize axios interceptors
 import App from './App.tsx'
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/locale/zh_CN'

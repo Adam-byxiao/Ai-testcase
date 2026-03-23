@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Menu } from 'antd';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { 
@@ -7,16 +7,19 @@ import {
   CheckSquareOutlined, 
   DashboardOutlined 
 } from '@ant-design/icons';
+import axios from 'axios';
 
 // Pages
 import DesignPage from './pages/DesignPage';
 import PrdPage from './pages/PrdPage';
 import TestCasePage from './pages/TestCasePage';
 import DashboardPage from './pages/DashboardPage';
+import LoginPage from './pages/LoginPage';
 
 const { Header, Content, Sider } = Layout;
 
-const App: React.FC = () => {
+// Layout component for protected routes
+const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -54,17 +57,48 @@ const App: React.FC = () => {
               borderRadius: '8px'
             }}
           >
-            <Routes>
-              <Route path="/" element={<DesignPage />} />
-              <Route path="/design" element={<DesignPage />} />
-              <Route path="/prd" element={<PrdPage />} />
-              <Route path="/testcases" element={<TestCasePage />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
-            </Routes>
+            {children}
           </Content>
         </Layout>
       </Layout>
     </Layout>
+  );
+};
+
+const App: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Interceptors are now handled in utils/request.ts
+  }, []);
+
+  // If we are on login page, just render it
+  if (location.pathname === '/login') {
+    return <Routes><Route path="/login" element={<LoginPage />} /></Routes>;
+  }
+
+  // Simple auth check
+  const token = localStorage.getItem('token');
+  if (!token) {
+    // Redirect to login if not authenticated
+    // We need to use useEffect to navigate to avoid rendering during state update warning
+    // But returning null + navigate in useEffect is cleaner, 
+    // or just render LoginPage directly if we want to block access immediately
+    // For now let's just use a direct check
+    return <LoginPage />;
+  }
+
+  return (
+    <MainLayout>
+      <Routes>
+        <Route path="/" element={<DesignPage />} />
+        <Route path="/design" element={<DesignPage />} />
+        <Route path="/prd" element={<PrdPage />} />
+        <Route path="/testcases" element={<TestCasePage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
+    </MainLayout>
   );
 };
 

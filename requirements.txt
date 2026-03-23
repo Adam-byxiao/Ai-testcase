@@ -16,6 +16,7 @@ requests>=2.31.0
 openai>=1.10.0
 redis>=5.0.1
 fastmcp>=0.1.0
+opencv-python>=4.8.0
 
 # Development & Testing
 pytest>=8.0.0

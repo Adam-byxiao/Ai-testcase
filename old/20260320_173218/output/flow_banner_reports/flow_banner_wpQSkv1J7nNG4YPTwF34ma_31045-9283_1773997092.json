@@ -1,0 +1,579 @@
+{
+  "ts": "2026-03-20T16:58:12.577889",
+  "file_key": "wpQSkv1J7nNG4YPTwF34ma",
+  "node_id": "31045:9283",
+  "flow_banner_groups": [
+    {
+      "feature_label": "Start Recording (Transition State)",
+      "banner_bbox": [
+        0.05,
+        0.15,
+        0.25,
+        0.05
+      ],
+      "feature_summary": "Initiates the recording process.",
+      "flow_summary": "Initiate recording → Transition through states → Capture audio",
+      "nodes": [
+        {
+          "label": "To capture",
+          "bbox": [
+            0.3,
+            0.1,
+            0.15,
+            0.15
+          ],
+          "meaning": "Prompt to start recording.",
+          "state": "Prompt",
+          "result": "Waiting for user to start"
+        },
+        {
+          "label": "5 seconds countdown",
+          "bbox": [
+            0.5,
+            0.15,
+            0.08,
+            0.08
+          ],
+          "meaning": "Countdown before recording starts.",
+          "state": "Countdown",
+          "result": "Recording will start"
+        },
+        {
+          "label": "Initiating...",
+          "bbox": [
+            0.65,
+            0.15,
+            0.08,
+            0.08
+          ],
+          "meaning": "Initial process after countdown.",
+          "state": "Initializing",
+          "result": "Prepare for capturing"
+        },
+        {
+          "label": "511",
+          "bbox": [
+            0.75,
+            0.1,
+            0.15,
+            0.15
+          ],
+          "meaning": "Recording in progress.",
+          "state": "Recording",
+          "result": "Capturing audio"
+        },
+        {
+          "label": "511",
+          "bbox": [
+            0.9,
+            0.1,
+            0.15,
+            0.15
+          ],
+          "meaning": "Additional recording information or controls.",
+          "state": "Recording",
+          "result": "Manage recording"
+        }
+      ],
+      "edges": [
+        {
+          "from": "To capture",
+          "to": "5 seconds countdown",
+          "label": "",
+          "trigger": "Tap",
+          "result": "Start countdown"
+        },
+        {
+          "from": "5 seconds countdown",
+          "to": "Initiating...",
+          "label": "",
+          "trigger": "",
+          "result": "End countdown"
+        },
+        {
+          "from": "Initiating...",
+          "to": "511",
+          "label": "",
+          "trigger": "",
+          "result": "Start recording"
+        },
+        {
+          "from": "511",
+          "to": "511",
+          "label": "",
+          "trigger": "",
+          "result": "Manage or continue recording"
+        }
+      ]
+    },
+    {
+      "feature_label": "Live Note",
+      "banner_bbox": [
+        0.05,
+        0.6,
+        0.15,
+        0.05
+      ],
+      "feature_summary": "Live transcription of audio notes.",
+      "flow_summary": "Live notes displayed and transcripted",
+      "nodes": [
+        {
+          "label": "011",
+          "bbox": [
+            0.3,
+            0.55,
+            0.15,
+            0.15
+          ],
+          "meaning": "Live note recording.",
+          "state": "Recording",
+          "result": "Transcribe live"
+        },
+        {
+          "label": "Live Notes",
+          "bbox": [
+            0.5,
+            0.6,
+            0.15,
+            0.15
+          ],
+          "meaning": "Display of live transcription.",
+          "state": "Transcription",
+          "result": "Show text"
+        }
+      ],
+      "edges": [
+        {
+          "from": "011",
+          "to": "Live Notes",
+          "label": "",
+          "trigger": "",
+          "result": "Display transcription"
+        }
+      ]
+    },
+    {
+      "feature_label": "Info",
+      "banner_bbox": [
+        0.05,
+        0.8,
+        0.1,
+        0.05
+      ],
+      "feature_summary": "Display information details.",
+      "flow_summary": "Show recording information",
+      "nodes": [
+        {
+          "label": "011",
+          "bbox": [
+            0.3,
+            0.75,
+            0.15,
+            0.15
+          ],
+          "meaning": "Recording in progress.",
+          "state": "Recording",
+          "result": "Capture ongoing"
+        },
+        {
+          "label": "Info",
+          "bbox": [
+            0.5,
+            0.8,
+            0.15,
+            0.15
+          ],
+          "meaning": "Display recording details.",
+          "state": "Info display",
+          "result": "Show details"
+        }
+      ],
+      "edges": [
+        {
+          "from": "011",
+          "to": "Info",
+          "label": "",
+          "trigger": "",
+          "result": "Show details"
+        }
+      ]
+    }
+  ],
+  "node_mappings": [
+    {
+      "feature_label": "Start Recording (Transition State)",
+      "mappings": [
+        {
+          "visual_label": "To capture",
+          "json_name": "Tap to capture",
+          "score": 0.75
+        },
+        {
+          "visual_label": "5 seconds countdown",
+          "json_name": "AI dot matrix",
+          "score": 0.0
+        },
+        {
+          "visual_label": "Initiating...",
+          "json_name": "AI dot matrix",
+          "score": 0.0
+        },
+        {
+          "visual_label": "511",
+          "json_name": "AI dot matrix",
+          "score": 0.0
+        },
+        {
+          "visual_label": "511",
+          "json_name": "AI dot matrix",
+          "score": 0.0
+        }
+      ],
+      "source": "heuristic",
+      "error": "'\\n  \"mappings\"'"
+    },
+    {
+      "feature_label": "Live Note",
+      "mappings": [
+        {
+          "visual_label": "011",
+          "json_name": "AI dot matrix",
+          "score": 0.0
+        },
+        {
+          "visual_label": "Live Notes",
+          "json_name": "Live Note",
+          "score": 0.75
+        }
+      ],
+      "source": "heuristic",
+      "error": "'\\n  \"mappings\"'"
+    },
+    {
+      "feature_label": "Info",
+      "mappings": [
+        {
+          "visual_label": "011",
+          "json_name": "AI dot matrix",
+          "score": 0.0
+        },
+        {
+          "visual_label": "Info",
+          "json_name": "Info",
+          "score": 1.0
+        }
+      ],
+      "source": "heuristic",
+      "error": "'\\n  \"mappings\"'"
+    }
+  ],
+  "flow_banner_flowcharts": [
+    {
+      "feature_label": "Start Recording (Transition State)",
+      "flowchart": {
+        "ordered_nodes": [
+          {
+            "label": "To capture",
+            "bbox": [
+              0.3,
+              0.1,
+              0.15,
+              0.15
+            ],
+            "meaning": "Prompt to start recording.",
+            "state": "Prompt",
+            "result": "Waiting for user to start"
+          },
+          {
+            "label": "5 seconds countdown",
+            "bbox": [
+              0.5,
+              0.15,
+              0.08,
+              0.08
+            ],
+            "meaning": "Countdown before recording starts.",
+            "state": "Countdown",
+            "result": "Recording will start"
+          },
+          {
+            "label": "Initiating...",
+            "bbox": [
+              0.65,
+              0.15,
+              0.08,
+              0.08
+            ],
+            "meaning": "Initial process after countdown.",
+            "state": "Initializing",
+            "result": "Prepare for capturing"
+          },
+          {
+            "label": "511",
+            "bbox": [
+              0.75,
+              0.1,
+              0.15,
+              0.15
+            ],
+            "meaning": "Recording in progress.",
+            "state": "Recording",
+            "result": "Capturing audio"
+          },
+          {
+            "label": "511",
+            "bbox": [
+              0.9,
+              0.1,
+              0.15,
+              0.15
+            ],
+            "meaning": "Additional recording information or controls.",
+            "state": "Recording",
+            "result": "Manage recording"
+          }
+        ],
+        "edges": [
+          {
+            "from": "Start conversation",
+            "to": "Conversation",
+            "source": "json"
+          },
+          {
+            "from": "Standby",
+            "to": "Joining",
+            "source": "json"
+          },
+          {
+            "from": "Joining",
+            "to": "Joining",
+            "source": "json"
+          },
+          {
+            "from": "Joining",
+            "to": "Recording",
+            "source": "json"
+          },
+          {
+            "from": "Recording",
+            "to": "Recording Controls",
+            "source": "json"
+          },
+          {
+            "from": "Icon",
+            "to": "Live Note",
+            "source": "json"
+          },
+          {
+            "from": "Icon",
+            "to": "local_recording_control",
+            "source": "json"
+          },
+          {
+            "from": "AI Live Notes - Loading & Null",
+            "to": "Live Note",
+            "source": "json"
+          },
+          {
+            "from": "To capture",
+            "to": "5 seconds countdown",
+            "source": "vision"
+          },
+          {
+            "from": "5 seconds countdown",
+            "to": "Initiating...",
+            "source": "vision"
+          },
+          {
+            "from": "Initiating...",
+            "to": "511",
+            "source": "vision"
+          },
+          {
+            "from": "511",
+            "to": "511",
+            "source": "vision"
+          }
+        ],
+        "starts": [
+          "To capture"
+        ],
+        "ends": [],
+        "branches": [
+          "511",
+          "511"
+        ]
+      }
+    },
+    {
+      "feature_label": "Live Note",
+      "flowchart": {
+        "ordered_nodes": [
+          {
+            "label": "011",
+            "bbox": [
+              0.3,
+              0.55,
+              0.15,
+              0.15
+            ],
+            "meaning": "Live note recording.",
+            "state": "Recording",
+            "result": "Transcribe live"
+          },
+          {
+            "label": "Live Notes",
+            "bbox": [
+              0.5,
+              0.6,
+              0.15,
+              0.15
+            ],
+            "meaning": "Display of live transcription.",
+            "state": "Transcription",
+            "result": "Show text"
+          }
+        ],
+        "edges": [
+          {
+            "from": "Start conversation",
+            "to": "Conversation",
+            "source": "json"
+          },
+          {
+            "from": "Standby",
+            "to": "Joining",
+            "source": "json"
+          },
+          {
+            "from": "Joining",
+            "to": "Joining",
+            "source": "json"
+          },
+          {
+            "from": "Joining",
+            "to": "Recording",
+            "source": "json"
+          },
+          {
+            "from": "Recording",
+            "to": "Recording Controls",
+            "source": "json"
+          },
+          {
+            "from": "Icon",
+            "to": "Live Note",
+            "source": "json"
+          },
+          {
+            "from": "Icon",
+            "to": "local_recording_control",
+            "source": "json"
+          },
+          {
+            "from": "AI Live Notes - Loading & Null",
+            "to": "Live Note",
+            "source": "json"
+          },
+          {
+            "from": "011",
+            "to": "Live Notes",
+            "source": "vision"
+          }
+        ],
+        "starts": [
+          "011"
+        ],
+        "ends": [
+          "Live Notes"
+        ],
+        "branches": []
+      }
+    },
+    {
+      "feature_label": "Info",
+      "flowchart": {
+        "ordered_nodes": [
+          {
+            "label": "011",
+            "bbox": [
+              0.3,
+              0.75,
+              0.15,
+              0.15
+            ],
+            "meaning": "Recording in progress.",
+            "state": "Recording",
+            "result": "Capture ongoing"
+          },
+          {
+            "label": "Info",
+            "bbox": [
+              0.5,
+              0.8,
+              0.15,
+              0.15
+            ],
+            "meaning": "Display recording details.",
+            "state": "Info display",
+            "result": "Show details"
+          }
+        ],
+        "edges": [
+          {
+            "from": "Start conversation",
+            "to": "Conversation",
+            "source": "json"
+          },
+          {
+            "from": "Standby",
+            "to": "Joining",
+            "source": "json"
+          },
+          {
+            "from": "Joining",
+            "to": "Joining",
+            "source": "json"
+          },
+          {
+            "from": "Joining",
+            "to": "Recording",
+            "source": "json"
+          },
+          {
+            "from": "Recording",
+            "to": "Recording Controls",
+            "source": "json"
+          },
+          {
+            "from": "Icon",
+            "to": "Live Note",
+            "source": "json"
+          },
+          {
+            "from": "Icon",
+            "to": "local_recording_control",
+            "source": "json"
+          },
+          {
+            "from": "AI Live Notes - Loading & Null",
+            "to": "Live Note",
+            "source": "json"
+          },
+          {
+            "from": "011",
+            "to": "Info",
+            "source": "vision"
+          }
+        ],
+        "starts": [
+          "011"
+        ],
+        "ends": [
+          "Info"
+        ],
+        "branches": []
+      }
+    }
+  ]
+}

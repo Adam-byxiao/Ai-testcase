@@ -2,12 +2,17 @@ import json
 import os
 
 class FigmaParser:
-    def __init__(self, file_path):
+    def __init__(self, file_path=None, data=None, include_all_layers=False, max_nodes=None):
         self.file_path = file_path
-        self.data = None
+        self.data = data
+        self.include_all_layers = include_all_layers
+        self.max_nodes = max_nodes
+        self._node_count = 0
 
     def load_data(self):
         """Load the JSON data from the file."""
+        if not self.file_path:
+            raise FileNotFoundError("File path is required to load data.")
         if not os.path.exists(self.file_path):
             raise FileNotFoundError(f"File not found: {self.file_path}")
         with open(self.file_path, 'r', encoding='utf-8') as f:
@@ -36,16 +41,30 @@ class FigmaParser:
 
     def _traverse_node(self, node):
         """Recursively traverse nodes and extract meaningful info."""
+        if self.max_nodes is not None and self._node_count >= self.max_nodes:
+            return None
+
         node_type = node.get('type')
         node_name = node.get('name')
         node_id = node.get('id')
-        
+        bbox = node.get('absoluteBoundingBox') or node.get('absoluteRenderBounds')
+
         # Base info
+        self._node_count += 1
         info = {
             'id': node_id,
             'name': node_name,
             'type': node_type
         }
+        if isinstance(bbox, dict):
+            info['bbox'] = [
+                bbox.get('x'),
+                bbox.get('y'),
+                bbox.get('width'),
+                bbox.get('height')
+            ]
+        if 'visible' in node:
+            info['visible'] = node.get('visible')
 
         # Extract Text Content
         if node_type == 'TEXT':
@@ -85,6 +104,9 @@ class FigmaParser:
         is_relevant = node_type in relevant_types
         has_children = 'children' in info and len(info['children']) > 0
         
+        if self.include_all_layers:
+            return info
+
         if is_relevant or has_children:
             return info
             
