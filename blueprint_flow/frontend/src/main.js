@@ -10,11 +10,28 @@ app.innerHTML = `
     <input id="nodeId" placeholder="node id (可选)" />
     <input id="scale" value="0.18" style="width:70px" />
     <button id="loadBtn">加载节点</button>
+    <button id="blueprintBtn" class="secondary">蓝图节点</button>
     <button id="saveBtn" class="secondary">保存连线</button>
     <button id="layoutBtn" class="secondary">布局: 还原</button>
     <div class="status" id="status">idle</div>
   </div>
-  <div class="canvas" id="canvas"></div>
+  <div class="workspace">
+    <div class="canvas" id="canvas"></div>
+    <div class="sidebar">
+      <div class="side-title">Layer 深度</div>
+      <div class="side-hint">仅用于调试显示层级密度</div>
+      <div class="side-row">
+        <label>Max Depth</label>
+        <input id="layerDepth" type="range" min="1" max="6" value="2" />
+        <span id="layerDepthVal">2</span>
+      </div>
+      <div class="side-row">
+        <button id="applyDepth" class="secondary">应用深度</button>
+      </div>
+      <div class="side-title">节点层级</div>
+      <div class="side-list" id="layerList"></div>
+    </div>
+  </div>
 `;
 
 const canvas = document.getElementById('canvas');
@@ -26,6 +43,15 @@ let connections = [];
 let selected = null;
 let layoutMode = 'absolute';
 let lastGroups = [];
+let blueprintMode = false;
+let lastData = null;
+let lastBlueprint = null;
+let previewPopover = null;
+let previewImg = null;
+let previewBox = null;
+let previewPins = [];
+let previewVisible = false;
+let lastBlueprintNode = null;
 
 function initScene() {
   if (!scene) {
@@ -44,7 +70,7 @@ function setStatus(msg) {
 
 function clearCanvas() {
   if (scene) {
-    scene.querySelectorAll('.node, .group-box, .group-label').forEach((n) => n.remove());
+    scene.querySelectorAll('.node, .group-box, .group-label, .bp-node, .bp-title, .bp-image').forEach((n) => n.remove());
   }
   connections = [];
   selected = null;
@@ -127,6 +153,7 @@ function renderNodes(list) {
 }
 
 const loadBtn = document.getElementById('loadBtn');
+const blueprintBtn = document.getElementById('blueprintBtn');
 const saveBtn = document.getElementById('saveBtn');
 const layoutBtn = document.getElementById('layoutBtn');
 
@@ -137,11 +164,13 @@ loadBtn.onclick = async () => {
   const nodeId = document.getElementById('nodeId').value.trim();
   if (!figmaUrl && !fileKey) return alert('请输入 Figma URL 或 file key');
   setStatus('loading...');
+  blueprintMode = false;
   const url = new URL(backend + '/api/blueprint/nodes');
   url.searchParams.set('file_key', figmaUrl || fileKey);
   if (nodeId) url.searchParams.set('node_id', nodeId);
   const res = await fetch(url);
   const data = await res.json();
+  lastData = data;
   nodes = data.nodes || [];
   lastGroups = data.groups || [];
   initScene();
@@ -157,6 +186,26 @@ loadBtn.onclick = async () => {
     renderNodes(nodes);
     setStatus('loaded ' + nodes.length + ' nodes');
   }
+};
+
+blueprintBtn.onclick = async () => {
+  const backend = document.getElementById('backend').value.trim();
+  const figmaUrl = document.getElementById('figmaUrl').value.trim();
+  const fileKey = document.getElementById('fileKey').value.trim();
+  const nodeId = document.getElementById('nodeId').value.trim();
+  if (!figmaUrl && !fileKey) return alert('请输入 Figma URL 或 file key');
+  setStatus('loading blueprint...');
+  blueprintMode = true;
+  const url = new URL(backend + '/api/blueprint/node');
+  url.searchParams.set('file_key', figmaUrl || fileKey);
+  if (nodeId) url.searchParams.set('node_id', nodeId);
+  const res = await fetch(url);
+  const data = await res.json();
+  lastData = data;
+  lastBlueprint = data;
+  initScene();
+  renderBlueprintNode(data);
+  setStatus(`blueprint: ${data.node?.name || 'node'}`);
 };
 
 saveBtn.onclick = async () => {
@@ -185,6 +234,7 @@ saveBtn.onclick = async () => {
 window.addEventListener('resize', drawEdges);
 
 layoutBtn.onclick = () => {
+  if (blueprintMode) return;
   layoutMode = layoutMode === 'absolute' ? 'grouped' : 'absolute';
   layoutBtn.textContent = layoutMode === 'absolute' ? '布局: 还原' : '布局: 分区';
   if (nodes.length === 0) return;
@@ -245,6 +295,12 @@ function renderAbsolute(groups) {
     div.className = 'node';
     div.id = 'node-' + idx;
     div.textContent = n.name || 'node';
+    if (typeof n.depth === 'number') {
+      const badge = document.createElement('span');
+      badge.className = 'depth-badge';
+      badge.textContent = `L${n.depth}`;
+      div.appendChild(badge);
+    }
     const nx = ((n.bbox[0] - minX) / w) * (w * scale) + 60;
     const ny = ((n.bbox[1] - minY) / h) * (h * scale) + 60;
     div.style.left = nx + 'px';
@@ -312,6 +368,12 @@ function renderGroups(groups) {
       div.className = 'node';
       div.id = 'node-' + (globalIdx >= 0 ? globalIdx : `${gi}-${idx}`);
       div.textContent = n.name || 'node';
+      if (typeof n.depth === 'number') {
+        const badge = document.createElement('span');
+        badge.className = 'depth-badge';
+        badge.textContent = `L${n.depth}`;
+        div.appendChild(badge);
+      }
       const nx = ((n.bbox[0] - minX) / w) * (groupRect.w - 200) + groupRect.x + 80;
       const ny = ((n.bbox[1] - minY) / h) * (groupRect.h - 120) + groupRect.y + 40;
       div.style.left = nx + 'px';
@@ -337,4 +399,250 @@ function renderGroups(groups) {
     yOffset += groupRect.h + padding;
   });
   drawEdges();
+}
+
+const depthSlider = document.getElementById('layerDepth');
+const depthVal = document.getElementById('layerDepthVal');
+const applyDepth = document.getElementById('applyDepth');
+const layerList = document.getElementById('layerList');
+
+depthSlider.oninput = () => {
+  depthVal.textContent = depthSlider.value;
+};
+
+applyDepth.onclick = () => {
+  if (!lastData) return;
+  const maxDepth = parseInt(depthSlider.value, 10);
+  const filterNodes = (list) => (list || []).filter(n => typeof n.depth === 'number' ? n.depth <= maxDepth : true);
+  if (blueprintMode && lastBlueprint) {
+    renderBlueprintNode(lastBlueprint, maxDepth);
+    renderLayerListBlueprint(lastBlueprint, maxDepth);
+    return;
+  }
+  if (lastData.groups && lastData.groups.length > 0) {
+    const newGroups = lastData.groups.map(g => ({
+      ...g,
+      nodes: filterNodes(g.nodes)
+    }));
+    lastGroups = newGroups;
+    if (layoutMode === 'absolute') {
+      renderAbsolute(newGroups);
+    } else {
+      renderGroups(newGroups);
+    }
+  } else {
+    nodes = filterNodes(lastData.nodes || []);
+    renderNodes(nodes);
+  }
+  renderLayerList();
+};
+
+function renderLayerList() {
+  if (!layerList) return;
+  layerList.innerHTML = '';
+  if (!nodes || nodes.length === 0) return;
+  const items = nodes
+    .slice()
+    .sort((a, b) => (a.depth ?? 0) - (b.depth ?? 0))
+    .map((n) => {
+      const div = document.createElement('div');
+      div.className = 'side-item';
+      div.textContent = `L${n.depth ?? '?'} · ${n.name || n.id}`;
+      return div;
+    });
+  items.forEach(i => layerList.appendChild(i));
+}
+
+function renderBlueprintNode(data, maxDepth = null) {
+  clearCanvas();
+  const node = data.node || {};
+  lastBlueprintNode = node;
+  const sections = data.sections || [];
+  scene.classList.add('blueprint-scene');
+  scene.style.width = '100%';
+  scene.style.height = '100%';
+
+  const title = document.createElement('div');
+  title.className = 'bp-title';
+  title.textContent = node.name || 'Blueprint Node';
+  title.onclick = (e) => togglePreviewPopover(data, e);
+  scene.appendChild(title);
+
+  const card = document.createElement('div');
+  card.className = 'bp-node';
+  card.style.left = '140px';
+  card.style.top = '120px';
+  card.style.width = '360px';
+  scene.appendChild(card);
+
+  const header = document.createElement('div');
+  header.className = 'bp-header';
+  header.textContent = node.name || 'Node';
+  card.appendChild(header);
+
+  previewPins = [];
+
+  sections.forEach((sec) => {
+    const secWrap = document.createElement('div');
+    secWrap.className = 'bp-section';
+    const label = document.createElement('div');
+    label.className = 'bp-section-title';
+    label.textContent = sec.title;
+    secWrap.appendChild(label);
+
+    const pins = (sec.pins || []).filter(p => {
+      if (maxDepth === null || maxDepth === undefined) return true;
+      return typeof p.depth === 'number' ? p.depth <= maxDepth : true;
+    });
+    pins.forEach((p) => {
+      const pin = document.createElement('div');
+      pin.className = 'bp-pin ' + (p.side === 'right' ? 'right' : 'left');
+      pin.setAttribute('data-pin-id', p.id);
+      if (p.bbox && node.bbox) {
+        pin.setAttribute('data-bbox', JSON.stringify(p.bbox));
+      }
+      const circle = document.createElement('span');
+      circle.className = 'bp-pin-circle';
+      pin.appendChild(circle);
+      const text = document.createElement('span');
+      text.className = 'bp-pin-text';
+      text.textContent = `${p.name} (L${p.depth ?? '?'})`;
+      pin.appendChild(text);
+      secWrap.appendChild(pin);
+
+      pin.onmouseenter = () => {
+        showPreviewBBox(p, node);
+        pin.classList.add('hover');
+      };
+      pin.onmouseleave = () => {
+        pin.classList.remove('hover');
+      };
+      pin.onclick = (e) => {
+        openPreviewPopoverAt(data, e);
+        showPreviewBBox(p, node);
+      };
+
+      previewPins.push({ pin, data: p });
+    });
+
+    card.appendChild(secWrap);
+  });
+  drawEdges();
+}
+
+function renderLayerListBlueprint(data, maxDepth = null) {
+  if (!layerList) return;
+  layerList.innerHTML = '';
+  const sections = data.sections || [];
+  const pins = sections.flatMap(s => s.pins || []);
+  const list = pins
+    .filter(p => maxDepth === null || (typeof p.depth === 'number' ? p.depth <= maxDepth : true))
+    .sort((a, b) => (a.depth ?? 0) - (b.depth ?? 0));
+  list.forEach((p) => {
+    const div = document.createElement('div');
+    div.className = 'side-item';
+    div.textContent = `L${p.depth ?? '?'} · ${p.name || p.id}`;
+    layerList.appendChild(div);
+  });
+}
+
+function ensurePreviewPopover() {
+  if (previewPopover) return;
+  previewPopover = document.createElement('div');
+  previewPopover.className = 'bp-popover';
+  previewPopover.innerHTML = `
+    <div class="bp-popover-header">
+      <span>Figma Preview</span>
+      <button class="bp-popover-close">Close</button>
+    </div>
+    <div class="bp-preview">
+      <img class="bp-image" alt="preview" />
+      <div class="bp-bbox"></div>
+    </div>
+  `;
+  scene.appendChild(previewPopover);
+  previewImg = previewPopover.querySelector('.bp-image');
+  previewBox = previewPopover.querySelector('.bp-bbox');
+  previewPopover.querySelector('.bp-popover-close').onclick = closePreviewPopover;
+  previewPopover.querySelector('.bp-preview').onclick = (e) => handlePreviewClick(e);
+}
+
+function togglePreviewPopover(data, evt = null) {
+  if (!data?.figma?.image_url) return;
+  ensurePreviewPopover();
+  if (!previewVisible) {
+    previewImg.src = data.figma.image_url;
+    previewPopover.style.display = 'block';
+    previewVisible = true;
+    placePopoverFixed();
+  } else {
+    closePreviewPopover();
+  }
+}
+
+function openPreviewPopoverAt(data, evt) {
+  if (!data?.figma?.image_url) return;
+  ensurePreviewPopover();
+  previewImg.src = data.figma.image_url;
+  previewPopover.style.display = 'block';
+  previewVisible = true;
+  placePopoverFixed();
+}
+
+function closePreviewPopover() {
+  if (!previewPopover) return;
+  previewPopover.style.display = 'none';
+  previewVisible = false;
+  if (previewBox) previewBox.style.display = 'none';
+}
+
+function showPreviewBBox(p, node) {
+  if (!previewPopover || previewPopover.style.display !== 'block') return;
+  if (!previewImg || !previewBox || !p.bbox || !node.bbox) return;
+  const [nx, ny, nw, nh] = node.bbox;
+  const [bx, by, bw, bh] = p.bbox;
+  const relX = (bx - nx) / (nw || 1);
+  const relY = (by - ny) / (nh || 1);
+  const relW = (bw) / (nw || 1);
+  const relH = (bh) / (nh || 1);
+  const imgRect = previewImg.getBoundingClientRect();
+  const scaleX = imgRect.width;
+  const scaleY = imgRect.height;
+  previewBox.style.display = 'block';
+  previewBox.style.left = (relX * scaleX) + 'px';
+  previewBox.style.top = (relY * scaleY) + 'px';
+  previewBox.style.width = (relW * scaleX) + 'px';
+  previewBox.style.height = (relH * scaleY) + 'px';
+}
+
+function handlePreviewClick(e) {
+  if (!previewImg || !previewBox || !lastBlueprint?.node?.bbox) return;
+  const rect = previewImg.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const [nx, ny, nw, nh] = lastBlueprint.node.bbox;
+  const absX = nx + (x / rect.width) * nw;
+  const absY = ny + (y / rect.height) * nh;
+  const found = previewPins.find(p => {
+    const b = p.data.bbox;
+    if (!b) return false;
+    return absX >= b[0] && absX <= b[0] + b[2] && absY >= b[1] && absY <= b[1] + b[3];
+  });
+  previewPins.forEach(p => p.pin.classList.remove('active'));
+  if (found) {
+    found.pin.classList.add('active');
+    showPreviewBBox(found.data, lastBlueprint.node);
+    found.pin.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function placePopoverFixed() {
+  if (!previewPopover || !scene) return;
+  const sceneRect = scene.getBoundingClientRect();
+  const popRect = previewPopover.getBoundingClientRect();
+  const padding = 16;
+  const x = Math.max(padding, sceneRect.width - popRect.width - padding);
+  const y = padding + 40;
+  previewPopover.style.left = x + 'px';
+  previewPopover.style.top = y + 'px';
 }
