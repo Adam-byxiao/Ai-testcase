@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    {"id": "enter_setup_code", "name": "Enter setup code"},
+    {"id": "identify_bot", "name": "Identify this Bot"},
+    {"id": "remote_setup", "name": "Remote setup"},
+    {"id": "finish_enroll", "name": "Finish enroll"}
+  ],
+  "edges": [
+    {"from": "enter_setup_code", "to": "identify_bot"},
+    {"from": "identify_bot", "to": "remote_setup"},
+    {"from": "remote_setup", "to": "enter_setup_code", "pins": [{"name": "cancel"}]},
+    {"from": "remote_setup", "to": "finish_enroll", "pins": [{"name": "next"}]}
+  ]
+}

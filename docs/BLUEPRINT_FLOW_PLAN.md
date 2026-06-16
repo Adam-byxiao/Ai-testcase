@@ -1,86 +1,58 @@
-﻿# Blueprint Flow — Updated Implementation Plan (Two-Step)
+﻿# 蓝图流程实现方案（两阶段）
 
-Date: 2026-03-23
-Owner: Codex + User
-Status: Draft
+日期：2026-03-23  
+负责人：Codex + 用户  
+状态：草案
 
-## Goal
-Build a UE5 Blueprint-style UI that reconstructs Figma structure into nodes and pins, enabling manual wiring. Deliver in two steps:
+## 目标
+构建 UE5 蓝图式 UI，把 Figma 结构转为可连线节点，支持人工连线与重组。
 
-1) Single large node URL → render as one UE5-style node
-2) Higher-level layer URL → render multiple nodes + manual connections
+## 阶段 1：单节点蓝图（MVP）
+### 目标
+将单个 Figma 大节点渲染为一个 UE5 风格蓝图卡片，并拆分子项为 pin。
 
-This plan focuses on frontend strategy and module breakdown, grounded in Figma JSON as the source of truth.
+### 输入
+- 单节点 Figma URL
+- 后端 JSON
 
----
+### 输出
+- 一个蓝图卡片
+- header + sections + pins
+- 可视预览图
 
-## Step 1 — Single Node Blueprint (MVP)
-### Objective
-Render a single Figma node (e.g. Live Note frame) as one UE5-style blueprint node with pins derived from its child layers.
+### 映射规则
+- Node = Frame/Component
+- Pin = 子层级
+- Section = Fixed / Scroll / Main
 
-### Inputs
-- Figma URL with node-id of a single large node
-- Figma JSON for that node (via backend API)
-
-### Output
-- One UE5-style node card with:
-  - Header (node title)
-  - Sections (Fixed/Scroll/Groups)
-  - Pins for children (left or right)
-  - Optional status tags
-
-### Mapping Rules
-- Node = Figma frame/component
-- Pin = child layer (TEXT, INSTANCE, VECTOR, etc.)
-- Sections = groups based on layer names or semantic tags (Fixed, Scrolls, etc.)
-
-### Layout Rules
-- Node position = center
-- Pin list = vertical, fixed spacing
-- Pin side:
-  - default left
-  - right side if detected as "action" or "output" (e.g. icons, buttons)
-
-### Visual Style (UE5-like)
-- Dark grid background
-- Node card: dark panel + inner glow
-- Pin: small circle + color (type-based)
-- Connection preview line on hover
+### 样式
+- 深色网格背景
+- 节点卡片 + 标题栏
+- 彩色 pin
 
 ---
 
-## Step 2 — Multi Node + Manual Wiring
-### Objective
-Render a group/page with multiple nodes, allow user to manually connect pins.
+## 阶段 2：多节点蓝图 + 连线
+### 目标
+渲染多个节点 + 支持手动连线
 
-### Inputs
-- Figma URL containing multiple frames/components
-- Figma JSON extracted from a parent frame/page
+### 输入
+- 父级节点 URL
+- 多节点 JSON
 
-### Output
-- Multiple UE5 nodes positioned by bbox
-- User can drag nodes, create connections, delete connections
-- Connections saved to backend
+### 输出
+- 多节点蓝图
+- 手动连线
 
-### Mapping Rules
-- Node = top-level frames under selected parent
-- Pin = children under each node (filtered)
-- Filter noise (e.g. tiny vectors, invisible layers)
-
-### Layout Rules
-- Initial node position = scaled from Figma bbox
-- Pins = vertical list
-- Canvas = pan/zoom
-
-### Interaction Rules
-- Click pin → start link
-- Click target pin → finish link
-- Right-click edge → delete
-- Drag node → reposition
+### 规则
+- L1 为节点
+- L2 为 pin
+- 支持拖动节点
+- 保存连线
 
 ---
 
-## Data Models
+## 数据模型
 ### Node
 - id, title, bbox, pins[], meta
 
@@ -88,38 +60,27 @@ Render a group/page with multiple nodes, allow user to manually connect pins.
 - id, label, type, side, node_id
 
 ### Edge
-- id, from_pin, to_pin
+- from_pin, to_pin
 
 ---
 
-## Modules (Frontend)
-1) Data loader (fetch nodes/pins)
-2) Blueprint canvas (pan/zoom, grid)
-3) Node renderer (UE5 node style)
-4) Pin renderer (type-based style)
-5) Edge renderer (Bezier + highlight)
-6) Interaction layer (dragging, connect, delete)
+## 前端模块
+1. 数据加载
+2. 画布
+3. 节点渲染
+4. pin 渲染
+5. 连线
+6. 交互控制
 
 ---
 
-## Backend Requirements
-- `GET /api/blueprint/nodes?figma_url=`
-  - returns nodes + pins
+## 后端需求
+- `GET /api/blueprint/node`
+- `GET /api/blueprint/layers`
 - `POST /api/blueprint/connections`
-  - save edges
-- `GET /api/blueprint/connections`
-  - restore saved edges
 
 ---
 
-## Open Questions
-- Pin type taxonomy (text/button/icon/etc.)
-- Auto-detection of "output" pins
-- Grouping rules per project type
-
----
-
-## Deliverables
-- Phase 1: single node render + pins
-- Phase 2: multi-node render + manual wiring
-- Docs updated with exact mapping rules
+## 备注
+- 优先满足可视化与人工连线
+- 自动连线暂缓
